@@ -13,7 +13,10 @@ from urllib import urlencode
 from urllib2 import Request, urlopen, URLError, HTTPError
 from bing_voice import *
 from player import Player
-from creds import BING_KEY
+from settings import BING_KEY
+from settings import TELEGRAM_KEY
+from settings import SLACK_WEBHOOK
+from settings import MQTT_SERVER
 
 port = '/dev/ttyS2'
 baud = 57600
@@ -44,7 +47,7 @@ telegramid = 0
 
 ser = serial.Serial(port, baud, timeout=1)
 sio = io.TextIOWrapper(io.BufferedRWPair(ser, ser))
-bot = telepot.Bot('<<your Telegram API Key')
+bot = telepot.Bot(TELEGRAM_KEY)
 
 if ser.isOpen():
 	print(ser.name + ' is open...')
@@ -191,13 +194,11 @@ while not leave:
 			if messenger == 1:
 				print('Send Slack message')
 				
-				url = "<<you slack incoming webhok url>>"
-		
 				payload = json.dumps({
 					"text": recognizedText
 				})
 		
-				request = Request(url, data = payload, headers = {
+				request = Request(SLACK_WEBHOOK, data = payload, headers = {
 					"Content-Type": "application/json"
 				})
 	
