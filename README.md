@@ -7,11 +7,13 @@ How it works
 --
 This project uses [Slack](https://slack.com/), [Telegram](https://telegram.org/), [MQTT](http://mqtt.org/), [hook.io](http://hook.io/) and [ReSpeaker](http://respeaker.io/). 
 
-In case of Slack messenger, We set an Outgoing Webhook to a *hook.io* microservice written in Node.js. This Node.js script receives the text and publish MQTT message with a specified topic. The Python script running on ReSpeaker subscribe this topic and upon receiving this message, the text is converted to audio using Microsoft Cognitive Computing Text to Speech API. This is read out uinsg PyAudio.
+In case of Slack messenger, We set an Outgoing Webhook to a *hook.io* microservice written in Node.js. This Node.js script receives the text and publish MQTT message with a specified topic. The Python script running on ReSpeaker subscribe this topic and upon receiving this message, the text is converted to audio using Microsoft Cognitive Computing Text to Speech API. This is read out uinsg PyAudio. 
 
 In case of Telegram, the ReSpeaker python application use [Telepot](https://github.com/nickoala/telepot) Python library to integrate Telegram API. Whenever a message is received the text is send to Microsoft Cognitive Service API and the receiving audio is played using PyAudio.
 
-We have two applications running on the ReSpeaker, on Arduino Sketch and Python script. The Arduino Sketch receives touch event and send to the Python Script using Serial to start recording the voice input. The following section explains how to communicate from Arduino to Python script.
+We have two applications running on the ReSpeaker, on Arduino Sketch and Python script. The Arduino Sketch receives touch event and send to the Python Script using Serial to start recording the voice input. When the start recording message is received, the script records the user's voice input and convert to text using Microsoft Cognitive Service Speech to Text API and send to the corresponding messenger depending on the touch button id. If the button touched is 1 then send to Slack messenger and if the touch button id is 7 then to Telegram messenger. Telepot library is used to send to Telegram messenger. For Slack, we have created a Slack Incoming Webhook. Below picture depicts working of the application.
+
+![application diagram](https://raw.githubusercontent.com/krvarma/respeaker-messenger/master/images/app.png)
 
 How to communicate from Arduino to Python
 --
