@@ -1,4 +1,4 @@
-ReSpeaker Messenger: Sending Slack and Telegram messenges using ReSpeaker Voice Interaction Board
+ReSpeaker Messenger: Sending and receiving Slack and Telegram messages using ReSpeaker Voice Interaction Board
 ===
 
 My previous project using ReSpeaker was a Home Automation project to control different lights using your voice. This projects is about sending messages to Slack or Telegram using voice input and read out the message from the messenger. User can touch button 1 to send Slack message and touch button 7 to send Telegram message. For Telegram message, first you need to initiate the chat from Telegram client. This is because to send a message to Telegram you need the `userid` of the receiving person.
