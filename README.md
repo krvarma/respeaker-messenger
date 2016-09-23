@@ -35,6 +35,10 @@ As you know ReSpeaker has two UART connections, "*serial*" and "*serial1*". The 
     	serialdata = sio.readline()
     	print(serialdata)
 
+Setting up ReSpeaker
+-
+Follow [this document](https://github.com/respeaker/get_started_with_respeaker/wiki) to get started with ReSpeaker
+
 How to use the application
 -
 1. Open Arduino IDE and load [this file](https://github.com/krvarma/respeaker-messenger/blob/master/arduino/detecttouch.ino)
