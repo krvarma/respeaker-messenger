@@ -35,3 +35,40 @@ As you know ReSpeaker has two UART connections, "*serial*" and "*serial1*". The 
     	serialdata = sio.readline()
     	print(serialdata)
 
+How to use the application
+-
+1. Open Arduino IDE and load [this file](https://github.com/krvarma/respeaker-messenger/blob/master/arduino/detecttouch.ino)
+2. Connect your ReSpeaker to the network
+3. SSH to your ReSpeaker
+4. Create a folder to clone the project files
+5. Move to the folder and clone the repo https://github.com/krvarma/respeaker-messenger.git
+6. Got to `respeaker-messenger` folder
+7. Create an account or log on to Microsoft Cognitive Service Speech API](https://www.microsoft.com/cognitive-services/en-us/speech-api)
+8. Get an API Key and replace the variable BING_KEY in the Python Script `Settings.py`
+9. Log on to [Slack.com](https://slack.com/), go to Settings->Add and app or integrations
+10. Go to Manage->Custom Integrations->Incoming Webhook. Create Incoming Webhook and copy the URL
+11. Replace the variable SLACK_WEBHOOK in the Python Script `Settings.py`
+12. Go to Slack->Manage->Custom Integrations->Incoming Webhook and create Outgoing Webhook. Copy the Token
+13. Log on to [hook.io](https://hook.io/) and create a new hook
+14. Copy the contents of [this file](https://github.com/krvarma/respeaker-messenger/blob/master/microservice/slack-to-mqtt.js) to the hook
+15. Replace the [access_token](https://github.com/krvarma/respeaker-messenger/blob/master/microservice/slack-to-mqtt.js#L6)
+16. Log on to [Telegram.org](https://telegram.org/) and create a new bot following [this instructions](https://core.telegram.org/bots#create-a-new-bot)
+17. Copy the token and replace the variable TELEGRAM_KEY in the Python Script `Settings.py`
+18. Install required Python package paho-mqtt using pip install paho-mqtt
+19. Install required Python package paho-mqtt using pip install telepot
+20. Install required Python package monotonic using pip install monotonic
+21. Run `messenger.py` using command line python `messenger.py`
+22. Open Telegram client application and send a simple 'hi' to any user, this will receive at the ReSpeaker end and the `userid` will be saved for sending future messages. This step is necessary because to send a message to Telegram, you need the *userid* of the user to whom you want to send the message.
+23. Touch the button 1 to send to messages to Slack and touch button 7 to send messages to Telegram.
+24. You can also send messages from Slack to the specified channel using the specified trigger work, this will be send to ReSpeaker and it will read out the text
+
+If everything goes well, you have a working ReSpeaker Messenger and you can send messages using your voice. The application will read out the messages send from Slack or Telegram.
+
+Demo Video
+-
+**Slack Messenger**
+https://www.youtube.com/watch?v=Q7amXfVdt4k
+
+**Telegram Messenger**
+https://www.youtube.com/watch?v=_FrRhzkRTGc
+
